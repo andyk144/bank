@@ -27,4 +27,17 @@ describe BankAccount do
       expect{ account.withdraw(550) }.to raise_error 'Insufficient funds'
     end
   end
+
+  describe '#statement' do
+    it 'gives me the statement headings' do
+      statement_msg = "date || credit || debit || balance"
+      expect(account.statement).to eq([statement_msg])
+    end
+
+    it 'logs a deposit of 500' do
+      account.deposit(500)
+      statement_msg = "date || credit || debit || balance", "10/01/2012 || 500 || || 500"
+      expect(account.statement).to eq(statement_msg)
+    end
+  end
 end
