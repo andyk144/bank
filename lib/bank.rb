@@ -10,7 +10,14 @@ class BankAccount
   end
 
   def withdraw(amount)
-    raise 'Insufficient funds' if amount > balance
+    raise 'Insufficient funds' unless sufficient_funds_available?(amount)
     @balance -= amount
   end
+
+  private
+
+  def sufficient_funds_available?(amount)
+    amount <= balance
+  end
+
 end
