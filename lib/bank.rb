@@ -10,6 +10,7 @@ class BankAccount
   end
 
   def withdraw(amount)
+    raise 'Insufficient funds' if amount > balance
     @balance -= amount
   end
 end

@@ -22,5 +22,9 @@ describe BankAccount do
       account.withdraw(150)
       expect(account.balance).to eq(350)
     end
+    it 'won\'t allow me to withdraw more than my balance' do
+      account.deposit(500)
+      expect{ account.withdraw(550) }.to raise_error 'Insufficient funds'
+    end
   end
 end
