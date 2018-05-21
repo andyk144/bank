@@ -8,16 +8,17 @@ class BankAccount
 
   def deposit(amount)
     @balance += amount
-    add_transaction(@balance, amount)
+    add_deposit(@balance, amount)
   end
 
   def withdraw(amount)
     raise 'Insufficient funds' unless sufficient_funds_available?(amount)
     @balance -= amount
+    add_withdrawal(@balance, amount,)
   end
 
   def statement
-    @transaction_log
+    @transaction_log.each { |entry| entry }
   end
 
   private
@@ -26,7 +27,13 @@ class BankAccount
     amount <= balance
   end
 
-  def add_transaction(balance, amount)
-    @transaction_log.push("10/01/2012 || #{amount} || || #{balance}")
+  def add_deposit(balance, amount)
+    date = Time.now.strftime("%d/%m/%Y")
+    @transaction_log.push("#{date} || #{amount} || || #{balance}")
+  end
+
+  def add_withdrawal(balance, amount)
+    date = Time.now.strftime("%d/%m/%Y")
+    @transaction_log.push("#{date} || || #{amount} || #{balance}")
   end
 end
