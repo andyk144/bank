@@ -10,14 +10,14 @@ describe BankAccount do
   end
 
   describe '#deposit' do
-    it 'allows me to deposit money into my account increasing the balance' do
+    it 'allows user to deposit money into my account increasing the balance' do
       account.deposit(100)
       expect(account.balance).to eq(100)
     end
   end
 
   describe '#withdrawal' do
-    it 'allows me to withdraw money from my account' do
+    it 'allows user to withdraw money from my account' do
       account.deposit(500)
       account.withdraw(150)
       expect(account.balance).to eq(350)
