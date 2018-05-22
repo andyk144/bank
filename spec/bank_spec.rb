@@ -24,7 +24,7 @@ describe BankAccount do
     end
     it 'won\'t allow me to withdraw more than my balance' do
       account.deposit(500)
-      expect{ account.withdraw(550) }.to raise_error 'Insufficient funds'
+      expect { account.withdraw(550) }.to raise_error 'Insufficient funds'
     end
   end
 

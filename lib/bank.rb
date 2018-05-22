@@ -2,24 +2,24 @@ require_relative 'transaction'
 require_relative 'transaction_log'
 
 class BankAccount
-  attr_reader :balance, :transaction_log, :statement
+  attr_reader :balance, :transaction_log
 
   START_BALANCE = 0
 
-  def initialize(transaction_log = Transaction_log.new)
+  def initialize(transaction_log = TransactionLog.new)
     @balance = START_BALANCE
     @transaction_log = transaction_log
   end
 
   def deposit(amount)
     @balance += amount
-    add_transaction(decimal(amount),"")
+    add_transaction(decimal(amount), '')
   end
 
   def withdraw(amount)
     raise 'Insufficient funds' unless sufficient_funds_available?(amount)
     @balance -= amount
-    add_transaction("", decimal(amount))
+    add_transaction('', decimal(amount))
   end
 
   def statement
@@ -28,7 +28,7 @@ class BankAccount
 
   private
 
-  def add_transaction(credit="", debit="")
+  def add_transaction(credit = '', debit = '')
     transaction_record = Transaction.new(credit, debit, @balance)
     transaction_log.add_transaction(transaction_record)
   end

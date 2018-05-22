@@ -1,4 +1,4 @@
-class Transaction_log
+class TransactionLog
   attr_reader :log
 
   def initialize
@@ -16,15 +16,14 @@ class Transaction_log
   private
 
   def printable_format
-    map_transactions.unshift(statement_header).each { |row| row }
+    map_transactions.unshift(statement_header).each { |each_row| each_row }
   end
 
   def statement_header
-    "date || credit || debit || balance"
+    'date || credit || debit || balance'
   end
 
   def map_transactions
     @log.map { |trx| "#{trx.date} || #{trx.credit} || #{trx.debit} || #{'%.02f' % trx.balance} " }
   end
-
 end
