@@ -27,4 +27,12 @@ describe BankAccount do
       expect{ account.withdraw(550) }.to raise_error 'Insufficient funds'
     end
   end
+
+  describe '#statement' do
+    it 'prints the statement' do
+      account.deposit(200)
+      message = "date || credit || debit || balance\n22/05/2018 || 200.00 ||  || 200.00 \n"
+      expect { account.statement }.to output(message).to_stdout
+    end
+  end
 end

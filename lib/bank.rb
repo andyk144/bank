@@ -23,7 +23,7 @@ class BankAccount
   end
 
   def statement
-    transaction_log.print_statement
+    puts transaction_log.print_statement
   end
 
   private

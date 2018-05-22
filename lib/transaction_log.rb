@@ -16,7 +16,7 @@ class Transaction_log
   private
 
   def printable_format
-    map_transactions.unshift(statement_header).each { |row| puts row }
+    map_transactions.unshift(statement_header).each { |row| row }
   end
 
   def statement_header
