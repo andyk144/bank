@@ -6,7 +6,7 @@ class TransactionLog
   end
 
   def add_transaction(record)
-    @log.push(record)
+    log.push(record)
   end
 
   def print_statement
@@ -24,6 +24,6 @@ class TransactionLog
   end
 
   def map_transactions
-    @log.map { |trx| "#{trx.date} || #{trx.credit} || #{trx.debit} || #{'%.02f' % trx.balance} " }
+    log.map { |trx| "#{trx.date} || #{trx.credit} || #{trx.debit} || #{'%.02f' % trx.balance} " }
   end
 end
