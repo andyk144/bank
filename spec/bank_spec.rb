@@ -29,7 +29,6 @@ describe BankAccount do
   end
 
   describe '#statement' do
-
     it 'gives me the statement headings' do
       statement_msg = "date || credit || debit || balance"
       expect(account.statement).to eq([statement_msg])
