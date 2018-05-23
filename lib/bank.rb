@@ -6,20 +6,21 @@ class BankAccount
 
   START_BALANCE = 0
 
-  def initialize(transaction_log = TransactionLog.new)
+  def initialize(transaction_log = TransactionLog.new, transaction = Transaction)
     @balance = START_BALANCE
     @transaction_log = transaction_log
+    @transaction = transaction
   end
 
   def deposit(amount)
     @balance += amount
-    add_transaction(decimal(amount), '')
+    add_transaction(amount, 0)
   end
 
   def withdraw(amount)
     raise 'Insufficient funds' unless sufficient_funds_available?(amount)
     @balance -= amount
-    add_transaction('', decimal(amount))
+    add_transaction(0, amount)
   end
 
   def statement
@@ -29,7 +30,7 @@ class BankAccount
   private
 
   def add_transaction(credit = '', debit = '')
-    transaction_record = Transaction.new(credit, debit, @balance)
+    transaction_record = @transaction.new(credit, debit, @balance)
     transaction_log.add_transaction(transaction_record)
   end
 
@@ -37,7 +38,5 @@ class BankAccount
     amount <= balance
   end
 
-  def decimal(amount)
-    sprintf('%.2f', amount)
-  end
+
 end

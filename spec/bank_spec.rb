@@ -31,7 +31,8 @@ describe BankAccount do
   describe '#statement' do
     it 'prints the statement' do
       account.deposit(200)
-      message = "date || credit || debit || balance\n22/05/2018 || 200.00 ||  || 200.00 \n"
+      date = @date = Time.now.strftime('%d/%m/%Y')
+      message = "date || credit || debit || balance\n#{date} || 200.00 ||  || 200.00 \n"
       expect { account.statement }.to output(message).to_stdout
     end
   end
