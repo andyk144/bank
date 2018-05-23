@@ -36,6 +36,12 @@ date || credit || debit || balance
 > cd bank
 > bundle install
 ```
+### Run tests
+-----
+```
+> cd bank
+> rspec
+```
 
 ### Run code
 -----
@@ -48,3 +54,10 @@ irb
 > account.withdraw(500)
 > account.statement
 ```
+![alt text](screenshots/bankaccount_screenshot.png "irb screenshot")
+
+### My approach
+-----
+I started with a single class, TDDing the first set of features, depositing money and withdrawing money. I then introduced the bank statement feature and once I had it working in the BankAccount class I decided to refactor the code in to separate classes. I started by creating a transaction class, which creates an object for each transaction. I then followed this by creating a transaction log class to hold all of the transactions and produce the statement in a printable format.
+
+I tried to keep my methods as short and easy to understand as possible. I also tried to focus on the messages passing between objects as opposed to the objects defining my messages. This is my first attempt at looking at things this way and there's definitely room for improvement.   
