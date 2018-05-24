@@ -37,6 +37,4 @@ class BankAccount
   def sufficient_funds_available?(amount)
     amount <= balance
   end
-
-
 end

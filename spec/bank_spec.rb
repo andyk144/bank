@@ -2,6 +2,13 @@ require 'bank'
 
 describe BankAccount do
   subject(:account) { described_class.new }
+  let(:fake_transaction) { double('fake_transaction') }
+  let(:fake_transaction_log) { double('fake_transaction_log') }
+
+  before(:each) do
+    allow_any_instance_of(BankAccount).to receive(:add_transaction)
+  end
+
 
   describe '#balance' do
     it 'shows my account balance as 0' do
@@ -9,20 +16,21 @@ describe BankAccount do
     end
   end
 
+
   describe '#deposit' do
-    it 'allows user to deposit money into my account increasing the balance' do
+    it 'allows user to deposit money into an account increasing the balance' do
       account.deposit(100)
       expect(account.balance).to eq(100)
     end
   end
 
   describe '#withdrawal' do
-    it 'allows user to withdraw money from my account' do
+    it 'allows user to withdraw money from an account' do
       account.deposit(500)
       account.withdraw(150)
       expect(account.balance).to eq(350)
     end
-    it 'won\'t allow me to withdraw more than my balance' do
+    it 'won\'t allow a user to withdraw more than the balance' do
       account.deposit(500)
       expect { account.withdraw(550) }.to raise_error 'Insufficient funds'
     end
