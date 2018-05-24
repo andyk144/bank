@@ -14,14 +14,4 @@ describe TransactionLog do
       expect(transaction_log.log).to include(transaction_double)
     end
   end
-
-  describe '#print_statement' do
-    it 'should show the statement in a readable format' do
-      transaction_log.add_transaction(transaction_double)
-      header = 'date || credit || debit || balance'
-      body = '21/01/2018 || 500.00 ||  || 500.00 '
-      expect(transaction_log.print_statement).to include(header)
-      expect(transaction_log.print_statement).to include(body)
-    end
-  end
 end

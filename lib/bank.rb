@@ -1,15 +1,17 @@
 require_relative 'transaction'
 require_relative 'transaction_log'
+require_relative 'statement'
 
 class BankAccount
-  attr_reader :balance, :transaction_log
+  attr_reader :balance, :transaction_log, :statement
 
   START_BALANCE = 0
 
-  def initialize(transaction_log = TransactionLog.new, transaction = Transaction)
+  def initialize(transaction_log = TransactionLog.new, transaction = Transaction, statement = Statement)
     @balance = START_BALANCE
     @transaction_log = transaction_log
     @transaction = transaction
+    @statement = statement
   end
 
   def deposit(amount)
@@ -24,7 +26,7 @@ class BankAccount
   end
 
   def statement
-    puts transaction_log.print_statement
+    puts @statement.new(@transaction_log.log).print_transactions
   end
 
   private

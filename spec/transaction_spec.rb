@@ -5,15 +5,15 @@ describe Transaction do
   subject(:transaction_debit) { described_class.new('', 200, 300) }
 
   it 'records the credit amount' do
-    expect(transaction_credit.credit).to eq('500.00')
+    expect(transaction_credit.credit_decimal).to eq('500.00')
   end
 
   it 'records the balance' do
-    expect(transaction_credit.balance).to eq('500.00')
+    expect(transaction_credit.balance_decimal).to eq('500.00')
   end
 
   it 'records the debit amount' do
-    expect(transaction_debit.debit).to eq('200.00')
+    expect(transaction_debit.debit_decimal).to eq('200.00')
   end
 
   it 'records the transaction date' do

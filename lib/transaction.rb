@@ -1,30 +1,28 @@
-require_relative 'bank'
-
 class Transaction
   attr_reader :date
 
   def initialize(credit, debit, balance)
-    @credit1 = credit
-    @debit1 = debit
-    @balance1 = balance
+    @credit = credit
+    @debit = debit
+    @balance = balance
     @date = Time.now.strftime('%d/%m/%Y')
   end
 
-  def credit
-    decimal(credit1)
+  def credit_decimal
+    decimal(credit)
   end
 
-  def debit
-    decimal(debit1)
+  def debit_decimal
+    decimal(debit)
   end
 
-  def balance
-    decimal(balance1)
+  def balance_decimal
+    decimal(balance)
   end
 
   private
 
-  attr_reader :credit1, :debit1, :balance1
+  attr_reader :credit, :debit, :balance
 
   def decimal(amount)
     sprintf('%.2f', amount)
